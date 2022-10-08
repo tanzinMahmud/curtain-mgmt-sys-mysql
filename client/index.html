@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ZMC Blind Manufacturing | Login</title>
+    <link rel="icon" href="" type="image/png" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <base href="/" />
+
+    <!-- <link
+      rel="icon"
+      type="image/x-icon"
+      href="#"
+    /> -->
+    <!--Material Bootstrap CSS -->
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    />
+    <!-- Bootstrap core CSS -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Material Design Bootstrap -->
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/css/mdb.min.css" rel="stylesheet"> -->
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- JQuery -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+    ></script>
+    <!-- Bootstrap tooltips -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"
+    ></script>
+    <!-- Bootstrap core JavaScript -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"
+    ></script>
+    <!-- MDB core JavaScript -->
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/js/mdb.min.js"></script> -->
+    <!-- angularjs -->
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"
+    ></script>
+
+    <!-- axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- angularjs routing -->
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular-route.js"
+    ></script>
+
+    <!-- angularjs controllers -->
+    <script type="text/javascript" src="./js/controllers/root.ctrl.js"></script>
+    <script type="text/javascript" src="./js/controllers/auth.ctrl.js"></script>
+
+    <!-- custom style -->
+    <link href="./css/index.css" rel="stylesheet" />
+    <!-- custom style end -->
+  </head>
+
+  <body ng-app="navExtranetApp" ng-controller="authController">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container">
+        <a class="navbar-brand" href="#">ZMC</a>
+      </div>
+    </nav>
+    <div id="signin" class="container text-center">
+      <form class="form-signin card mt-5 pt-3 pb-3" ng-submit="login();">
+        <h4 class="mb-3">Sign In</h4>
+        <div ng-if="errMsgFlag==1;" class="alert alert-danger" role="alert">
+          {{errMsg}}
+        </div>
+        <label for="signinEmail" class="sr-only">Email address</label>
+        <input
+          ng-model="signinEmail"
+          type="email"
+          id="signinEmail"
+          class="form-control"
+          placeholder="Email address"
+          required
+          autofocus
+        />
+        <label for="signinPassword" class="sr-only">Password</label>
+        <input
+          ng-model="signinPassword"
+          type="password"
+          id="signinPassword"
+          class="form-control mt-3"
+          placeholder="Password"
+          required
+        />
+        <img
+          ng-if="loginLoading==1;"
+          class="mb-3"
+          height="39px;"
+          src="assets/loading.gif"
+        />
+        <br />
+        <button
+          class="btn btn-lg btn-primary btn-block text-capitalize"
+          type="submit"
+        >
+          Sign in
+        </button>
+      </form>
+    </div>
+  </body>
+</html>

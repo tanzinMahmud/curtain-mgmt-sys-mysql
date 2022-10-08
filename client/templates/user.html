@@ -1,0 +1,155 @@
+<div class="container-fluid mt-1 mb-3 user" ng-controller="userController">
+  <div class="row">
+    <div class="col-12">
+      <div class="user height-auto">
+        <div class="text-right">
+          <div class="d-flex justify-content-end mt-3 mb-3">
+            <button
+              type="button"
+              class="btn btn-success policy"
+              data-toggle="modal"
+              data-target="#detail_modal_policy"
+            >
+              ADD
+            </button>
+          </div>
+
+          <table class="table table-bordered text-center">
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th>Gender</th>
+              <th></th>
+            </tr>
+
+            <tr>
+              <td>1</td>
+              <td>Mr. Rahim</td>
+              <td>01789090989</td>
+              <td>rahim@gmail.com</td>
+              <td>Male</td>
+
+              <td>
+                <button type="button" class="btn btn-warning policy">
+                  Edit
+                </button>
+                <button type="button" class="btn btn-danger">Delete</button>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Mr. Ahmed</td>
+              <td>01789090989</td>
+              <td>ahmed@gmail.com</td>
+              <td>Male</td>
+
+              <td>
+                <button type="button" class="btn btn-warning policy">
+                  Edit
+                </button>
+                <button type="button" class="btn btn-danger">Delete</button>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Mr. Zaman</td>
+              <td>01789090989</td>
+              <td>rahim@gmail.com</td>
+              <td>Male</td>
+
+              <td>
+                <button type="button" class="btn btn-warning policy">
+                  Edit
+                </button>
+                <button type="button" class="btn btn-danger">Delete</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="detail_modal_policy"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div
+        class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable"
+      >
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add Customer</h5>
+            <button
+              type="button"
+              id="modal-close-button"
+              class="btn-close"
+              ng-click="closeModal"
+              data-dismiss="modal"
+              aria-label="Close"
+              class="close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form class="row g-3 p-3">
+              <div class="col-md-6">
+                <label for="inputEmail4" class="form-label">Name</label>
+                <input type="text" class="form-control" id="inputEmail4" />
+              </div>
+              <div class="col-md-6">
+                <label for="inputPassword4" class="form-label">Phone</label>
+                <input type="text" class="form-control" id="inputPassword4" />
+              </div>
+              <div class="col-md-6">
+                <label for="inputEmail4" class="form-label">Email</label>
+                <input type="email" class="form-control" id="inputEmail4" />
+              </div>
+              <div class="col-md-6">
+                <label for="inputState" class="form-label">Gender</label>
+                <select id="inputState" class="form-select">
+                  <option selected>Choose...</option>
+                  <option>Male</option>
+                  <option>Female</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label for="inputAddress" class="form-label">Address</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputAddress"
+                  placeholder="1234 Main St"
+                />
+              </div>
+
+              <div class="col-md-6">
+                <label for="inputCity" class="form-label">City</label>
+                <input type="text" class="form-control" id="inputCity" />
+              </div>
+              <div class="col-md-4">
+                <label for="inputState" class="form-label">State</label>
+                <select id="inputState" class="form-select">
+                  <option selected>Choose...</option>
+                  <option>...</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <label for="inputZip" class="form-label">Zip</label>
+                <input type="text" class="form-control" id="inputZip" />
+              </div>
+
+              <div class="col-12">
+                <button type="submit" class="btn btn-primary">Add</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

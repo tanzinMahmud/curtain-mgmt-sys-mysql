@@ -1,0 +1,225 @@
+<div
+  class="container-fluid mt-1 mb-3"
+  ng-controller="transportBookingController"
+  id="tbl-data"
+>
+  <div class="row">
+    <div class="d-flex pt-3">
+      <div
+        class="first"
+        style="
+          width: 40%;
+          border-top: 2px solid #222;
+          border-left: 2px solid #222;
+        "
+      >
+        <div class="card">
+          <label class="me-2"> Dealer:</label>
+
+          <input ng-model="calculationData.dealerName" placeholder="Dealer" />
+        </div>
+        <div class="card">
+          <label class="me-2"> Customer Name:</label>
+
+          <input
+            ng-model="calculationData.customerName"
+            placeholder="Customer Name"
+          />
+        </div>
+        <div class="card">
+          <label class="me-2"> Tell:</label>
+
+          <input ng-model="calculationData.tell" placeholder="Tell" />
+        </div>
+        <div class="card">
+          <label class="me-2"> Email:</label>
+
+          <input ng-model="calculationData.email" placeholder="Email" />
+        </div>
+      </div>
+      <div
+        class="first"
+        style="
+          width: 35%;
+          border-top: 2px solid #222;
+          border-left: 2px Solid #222;
+          border-right: 2px solid #222;
+        "
+      >
+        <div class="card">
+          <div class="d-flex">
+            <div class="me-2">Install</div>
+            <input
+              ng-model="calculationData.install"
+              class="form-check-input me-2"
+              type="checkbox"
+              value=""
+              id="flexCheck"
+            />
+            <div class="me-2">Ship</div>
+            <input
+              ng-model="calculationData.ship"
+              class="form-check-input me-2"
+              type="checkbox"
+              value=""
+              id="flexCheckChecked"
+            />
+            <div class="me-2">PICK UP</div>
+            <input
+              ng-model="calculationData.pickUp"
+              class="form-check-input me-2"
+              type="checkbox"
+              value=""
+              id="flexCheck"
+            />
+          </div>
+        </div>
+        <div class="card">
+          Install/shipping adress:
+          <textarea
+            style="height: 170px"
+            ng-model="calculationData.shippingAddress"
+            placeholder="Install/shipping adress"
+          ></textarea>
+        </div>
+      </div>
+      <div
+        class="first"
+        style="
+          width: 25%;
+          border-top: 2px solid #222;
+          border-right: 2px solid #222;
+        "
+      >
+        <div class="card">
+          Date:
+          <input
+            ng-model="calculationData.date"
+            type="date"
+            placeholder="Date"
+          />
+        </div>
+        <div class="card">
+          Target Date:
+          <input
+            ng-model="calculationData.targetDate"
+            type="date"
+            placeholder="Target Date"
+          />
+        </div>
+        <div class="card lst">
+          Measured by
+          <input
+            ng-model="calculationData.measuredBy"
+            placeholder="Measured by"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <table
+        id="data-tbl"
+        style="border-color: rgb(16 16 16 / 61%)"
+        class="table table_main table-striped table-bordered text-center align-middle"
+      >
+        <tr style="background-color: rgb(121 122 127 / 61%)">
+          <th rowspan="2">#</th>
+          <th rowspan="2">Location</th>
+          <th rowspan="2">Pattern Name</th>
+
+          <th rowspan="2">Color Code</th>
+          <th rowspan="2" style="width: 5%">Cassette Smart</th>
+
+          <th colspan="2">Square</th>
+          <th colspan="2">Measurement</th>
+
+          <th rowspan="2" style="width: 6%">Control</th>
+          <th rowspan="2" style="width: 6%">Chain Length</th>
+          <th rowspan="2" style="width: 6%">Tight</th>
+          <th rowspan="2" style="width: 6%">Finish</th>
+          <th rowspan="2"></th>
+        </tr>
+        <tr style="background-color: rgb(121 122 127 / 61%)">
+          <th>Black</th>
+          <th>White</th>
+          <th style="width: 6%">Width</th>
+          <th style="width: 6%">Height</th>
+        </tr>
+        <tr ng-repeat="tbRow in calculationData.tableData track by $index">
+          <td>{{$index+1}}</td>
+          <td><input ng-model="tbRow.location" type="text" /></td>
+          <td><input ng-model="tbRow.patternName" type="text" /></td>
+          <td><input ng-model="tbRow.colorCode" type="text" /></td>
+          <td><input ng-model="tbRow.castleSmart" type="checkbox" /></td>
+          <td><input ng-model="tbRow.squareBlack" type="checkbox" /></td>
+          <td><input ng-model="tbRow.squareWhite" type="checkbox" /></td>
+          <td><input ng-model="tbRow.measurementWidth" type="text" /></td>
+          <td><input ng-model="tbRow.measurementHeight" type="text" /></td>
+          <td>
+            <select ng-model="tbRow.control">
+              <option value="">Select</option>
+              <option value="Motor">Motor</option>
+              <option value="R">R</option>
+              <option value="L">L</option>
+              <option value="L/R">L/R</option>
+            </select>
+          </td>
+          <td><input ng-model="tbRow.chainLength" type="text" /></td>
+          <td><input ng-model="tbRow.tight" type="text" /></td>
+          <td><input ng-model="tbRow.finish" type="text" /></td>
+          <td style="width: 4%">
+            <i
+              ng-click="addNewData();"
+              class="fas fa-solid fa-plus text-success"
+            ></i>
+            <i
+              ng-if="$index!=0"
+              ng-click="calculationData.tableData.splice($index, 1)"
+              class="fas fa-solid fa-minus text-danger"
+            ></i>
+          </td>
+        </tr>
+      </table>
+
+      <div class="d-flex">
+        <div class="first1" style="width: 60%">
+          <form action="/action_page.php">
+            <textarea
+              ng-model="calculationData.specialInstruction"
+              class="table_bor"
+              id="w3review"
+              name="w3review"
+              cols="50"
+              placeholder="Special Instruction:"
+            ></textarea>
+          </form>
+        </div>
+        <div class="first" style="width: 40%">
+          <div
+            class="div"
+            style="
+              border: 2px solid #222;
+              border-bottom: 2px solid #222;
+              z-index: 1;
+            "
+          >
+            <div class="card card2">Price: {{calculationData.price}}</div>
+            <div class="card card2">HST: {{calculationData.hst}}</div>
+            <div class="card card2">Total: {{calculationData.total}}</div>
+            <div class="card card2">
+              Deposit Pad: {{calculationData.depositPaid}}
+            </div>
+            <div class="card card2">
+              Deposit Pad: {{calculationData.orderBalance}}
+            </div>
+          </div>
+          <button ng-click="sendQuotation();" class="btn btn-success mt-2">
+            Genarate Quote
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
