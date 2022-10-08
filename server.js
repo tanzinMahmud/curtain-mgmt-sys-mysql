@@ -4,13 +4,15 @@ import colors from 'colors'
 import morgan from 'morgan'
 import dotenv from 'dotenv'
 
-import db from './config/db.js'
+import { connectDB } from './config/db.js'
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 
 import userRoutes from './routes/userRoutes.js'
 
 dotenv.config()
-db.connectDB()
+
+connectDB()
+
 const app = express()
 
 if (process.env.NODE_ENV === 'development') {

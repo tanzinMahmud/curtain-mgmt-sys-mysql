@@ -25,22 +25,26 @@
 
 import { Sequelize } from 'sequelize'
 
-let sequelize = null
-let db = {}
+const DBNAME = process.env.MYSQL_DB
+const USERNAME = process.env.MYSQL_USER
+const PASSWORD = process.env.MYSQL_PASSWORD
+const URI = process.env.MYSQL_URI
+
+const db = new Sequelize('curtainManagement', 'nav_tech', 'qwertyuiop12#$', {
+    host: 'navigatortechnologies.cys8ulxk5gzm.ap-southeast-1.rds.amazonaws.com',
+    dialect: 'mysql',
+    pool: {
+        max: 5,
+        min: 0,
+        acquire: 30000,
+        idle: 10000,
+    },
+})
 
 const connectDB = async () => {
-    sequelize = new Sequelize(
-        process.env.MYSQL_DB,
-        process.env.MYSQL_USER,
-        process.env.MYSQL_PASSWORD,
-        {
-            host: process.env.MYSQL_URI,
-            dialect: 'mysql',
-        }
-    )
-
     try {
-        await sequelize.authenticate()
+        await db.authenticate()
+        await db.sync()
         console.log(
             `MySqlDB Connected: ${process.env.MYSQL_URI}`.cyan.underline
         )
@@ -49,8 +53,7 @@ const connectDB = async () => {
         process.exit(1)
     }
 }
-db.sequelize = sequelize
-db.connectDB = connectDB
-export default db
+
+export { db, connectDB }
 
 // sequalize end

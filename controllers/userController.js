@@ -1,6 +1,7 @@
 import asyncHandler from 'express-async-handler'
 import generateToken from '../utils/generateToken.js'
 import User from '../models/userModel.js'
+import bcrypt from 'bcryptjs'
 
 // @desc    Auth user & get token
 // @route   POST /api/users/login
@@ -8,9 +9,13 @@ import User from '../models/userModel.js'
 const authUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body
 
-    const user = await User.findOne({ email })
+    const user = await User.findOne({
+        where: {
+            email,
+        },
+    })
 
-    if (user && (await user.matchPassword(password))) {
+    if (user && (await bcrypt.compare(password, user.password))) {
         res.json({
             _id: user._id,
             name: user.name,
@@ -40,10 +45,12 @@ const registerUser = asyncHandler(async (req, res) => {
         res.status(400)
         throw new Error('User already exists')
     }
+    const salt = await bcrypt.genSalt(10)
+    let hashPassword = await bcrypt.hash(password, salt)
     const user = await User.create({
         name,
         email,
-        password,
+        password: hashPassword,
     })
 
     if (user) {

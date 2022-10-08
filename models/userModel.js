@@ -46,13 +46,12 @@
 
 // sequelize
 
-import { Sequelize, DataTypes } from 'sequelize'
+import { Sequelize } from 'sequelize'
+import { db } from '../config/db.js'
 
-const sequelize = new Sequelize('mysql::memory:')
-
-const User = sequelize.define('User', {
+const User = db.define('user', {
     id: {
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         validate: {
@@ -60,35 +59,31 @@ const User = sequelize.define('User', {
         },
     },
     name: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         validate: {
             notEmpty: true,
         },
     },
     email: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         validate: {
             notEmpty: true,
         },
         unique: true,
     },
     password: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         validate: {
             notEmpty: true,
         },
     },
     isAdmin: {
-        type: DataTypes.BOOLEAN,
+        type: Sequelize.BOOLEAN,
         validate: {
             notEmpty: true,
         },
         defaultValue: false,
     },
-    tableName: 'user',
-    freezeTableName: true,
-    timestamps: false,
-    uderscored: true,
 })
 
 // sequelize end
